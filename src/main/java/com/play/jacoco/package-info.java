@@ -1,4 +1,4 @@
 /**
- * Simple
+ * Simple.
  */
 package com.play.jacoco;

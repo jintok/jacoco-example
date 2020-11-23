@@ -3,7 +3,7 @@ package com.play.jacoco;
 import org.junit.Test;
 
 /**
- * Tests
+ * Tests.
  */
 public class ATest {
 
