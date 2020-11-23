@@ -7,6 +7,9 @@ import org.junit.Test;
  */
 public class ATest {
 
+  /**
+   * A test.
+   */
   @Test
   public void testA() {
     System.out.println("pass a test");
