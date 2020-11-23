@@ -1,129 +1,145 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns="http://maven.apache.org/POM/4.0.0"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <artifactId>hi-jacoco</artifactId>
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <artifactId>hi-jacoco</artifactId>
 
-  <build>
-    <plugins>
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
-        </configuration>
-        <groupId>org.apache.maven.plugins</groupId>
-      </plugin>
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+                <groupId>org.apache.maven.plugins</groupId>
+            </plugin>
 
-      <plugin>
-        <artifactId>spring-boot-maven-plugin</artifactId>
+            <plugin>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <groupId>org.springframework.boot</groupId>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                        </goals>
+                        <id>default-integration-test</id>
+                    </execution>
+                </executions>
+                <groupId>org.apache.maven.plugins</groupId>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <groupId>org.apache.maven.plugins</groupId>
+            </plugin>
+
+            <plugin>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                    </excludes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                        <id>default-prepare-agent</id>
+                    </execution>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent-integration</goal>
+                        </goals>
+                        <id>default-prepare-agent-integration</id>
+                    </execution>
+                    <execution>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                        <id>default-report</id>
+                    </execution>
+                    <execution>
+                        <goals>
+                            <goal>report-integration</goal>
+                        </goals>
+                        <id>default-report-integration</id>
+                    </execution>
+                    <execution>
+                        <configuration>
+                            <destFile>${project.build.directory}/jacoco-merged.exec</destFile>
+                            <fileSets>
+                                <fileSet>
+                                    <directory>${project.build.directory}</directory>
+                                    <includes>
+                                        <include>jacoco*.exec</include>
+                                    </includes>
+                                </fileSet>
+                            </fileSets>
+                        </configuration>
+                        <goals>
+                            <goal>merge</goal>
+                        </goals>
+                        <id>default-merge</id>
+                        <phase>install</phase>
+                    </execution>
+                </executions>
+                <groupId>org.jacoco</groupId>
+                <version>0.7.4.201502262128</version>
+            </plugin>
+            <plugin>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <id>validate</id>
+                        <phase>validate</phase>
+                        <configuration>
+                            <encoding>UTF-8</encoding>
+                            <consoleOutput>true</consoleOutput>
+                            <failsOnError>true</failsOnError>
+                            <includeTestSourceDirectory>false</includeTestSourceDirectory>
+                        </configuration>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+    <dependencies>
+        <dependency>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <artifactId>junit</artifactId>
+            <groupId>junit</groupId>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+    <groupId>com.play.jacoco</groupId>
+
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>spring-boot-starter-parent</artifactId>
         <groupId>org.springframework.boot</groupId>
-      </plugin>
+        <version>2.0.0.RELEASE</version>
+    </parent>
 
-      <plugin>
-        <artifactId>maven-failsafe-plugin</artifactId>
-        <executions>
-          <execution>
-            <goals>
-              <goal>integration-test</goal>
-            </goals>
-            <id>default-integration-test</id>
-          </execution>
-        </executions>
-        <groupId>org.apache.maven.plugins</groupId>
-      </plugin>
+    <properties>
+        <java.version>1.8</java.version>
+    </properties>
 
-      <plugin>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <groupId>org.apache.maven.plugins</groupId>
-      </plugin>
-
-      <plugin>
-        <artifactId>jacoco-maven-plugin</artifactId>
-        <configuration>
-          <excludes>
-            <exclude>com/ebay/dss/zds/serverconfig/**/*</exclude>
-            <exclude>com/ebay/dss/zds/model/**/*</exclude>
-            <exclude>com/ebay/dss/zds/exception/**/*</exclude>
-          </excludes>
-        </configuration>
-        <executions>
-          <execution>
-            <goals>
-              <goal>prepare-agent</goal>
-            </goals>
-            <id>default-prepare-agent</id>
-          </execution>
-          <execution>
-            <goals>
-              <goal>prepare-agent-integration</goal>
-            </goals>
-            <id>default-prepare-agent-integration</id>
-          </execution>
-          <execution>
-            <goals>
-              <goal>report</goal>
-            </goals>
-            <id>default-report</id>
-          </execution>
-          <execution>
-            <goals>
-              <goal>report-integration</goal>
-            </goals>
-            <id>default-report-integration</id>
-          </execution>
-          <execution>
-            <configuration>
-              <destFile>${project.build.directory}/jacoco-merged.exec</destFile>
-              <fileSets>
-                <fileSet>
-                  <directory>${project.build.directory}</directory>
-                  <includes>
-                    <include>jacoco*.exec</include>
-                  </includes>
-                </fileSet>
-              </fileSets>
-            </configuration>
-            <goals>
-              <goal>merge</goal>
-            </goals>
-            <id>default-merge</id>
-            <phase>install</phase>
-          </execution>
-        </executions>
-        <groupId>org.jacoco</groupId>
-        <version>0.7.4.201502262128</version>
-      </plugin>
-    </plugins>
-  </build>
-  <dependencies>
-    <dependency>
-      <artifactId>spring-boot-starter-test</artifactId>
-      <groupId>org.springframework.boot</groupId>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <artifactId>junit</artifactId>
-      <groupId>junit</groupId>
-      <scope>test</scope>
-    </dependency>
-
-  </dependencies>
-  <groupId>com.play.jacoco</groupId>
-
-
-  <modelVersion>4.0.0</modelVersion>
-
-  <parent>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <groupId>org.springframework.boot</groupId>
-    <version>2.0.0.RELEASE</version>
-  </parent>
-
-  <properties>
-    <java.version>1.8</java.version>
-  </properties>
-
-  <version>1.0-SNAPSHOT</version>
+    <version>1.0-SNAPSHOT</version>
 </project>

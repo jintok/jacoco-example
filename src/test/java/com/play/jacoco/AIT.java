@@ -7,11 +7,11 @@ import org.junit.Test;
  */
 public class AIT {
 
-  /**
-   * A test.
-   */
-  @Test
-  public void testAIt() {
-    System.out.println("pass an integration test");
-  }
+    /**
+     * A test.
+     */
+    @Test
+    public void testAIt() {
+        System.out.println("pass an integration test");
+    }
 }

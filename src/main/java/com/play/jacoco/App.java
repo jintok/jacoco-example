@@ -5,15 +5,19 @@ package com.play.jacoco;
  */
 public final class App {
 
-  private App() {
+    /**
+     * Private constructor.
+     */
+    private App() {
 
-  }
+    }
 
-  /**
-   * Main.
-   * @param args Inputs.
-   */
-  public static void main(final String[] args) {
-    System.out.println("Hi!");
-  }
+    /**
+     * Main.
+     *
+     * @param args Inputs.
+     */
+    public static void main(final String[] args) {
+        System.out.println("Hi!");
+    }
 }
