@@ -1,7 +1,7 @@
 package com.play.jacoco;
 
-/*
-This an app
+/**
+ * App
  */
 public final class App {
 

@@ -1,4 +1,4 @@
-package com.play.jacoco;
-/*
-Simple app
+/**
+ * Simple
  */
+package com.play.jacoco;

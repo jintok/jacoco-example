@@ -2,8 +2,8 @@ package com.play.jacoco;
 
 import org.junit.Test;
 
-/*
-Integration tests
+/**
+ * Integration tests
  */
 public class AIT {
 

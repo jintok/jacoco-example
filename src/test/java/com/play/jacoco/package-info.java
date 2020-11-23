@@ -1,4 +1,4 @@
-package com.play.jacoco;
-/*
-Tests
+/**
+ * Tests
  */
+package com.play.jacoco;
